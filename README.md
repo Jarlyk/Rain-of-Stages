@@ -1,34 +1,31 @@
-
 ## Rain of Stages
-Rain of Stage is a mod and starter pack for building custom stages for Risk of Rain 2
+Rain of Stage is a Map and Mod Kit for Risk of Rain 2, providing all the bare essentials for getting started with making RoR2 Maps and Mods.
 
-It is not recommended to publish mods using Rain of Stages at this time as its still under heavy preliminary development and may undergo significant changes before its final release.
+
+#### Preparation
+
+It is recommended to make a copy of your Risk of Rain 2 folder to work against with Rain of Stages.
+Doing so will ensure that Rain of Stages does not interfere with the normal operation of your Risk of Rain 2 game.
+Rain of Stages provides the ability to Build, Deploy, and Launch your custom content directly to your targeted Risk of Rain 2 game.
+
+To use this project you will need a copy of Unity that matches Risk of Rain 2's current unity version. As of this writing, that is Unity 2018.4.16f1.
 
 ### Setup
-Rain of Stages is split into 2 parts, 
-Rain of Stages depends on BepinEx, MMHook, and Risk of Rain 2's Assembly-CSharp you will need to provide these to the projects in order to compile them.
-The Projects are already setup with the References they require so check your References for warnings to see what assembly references you're missing.
-
- 1. (Preparation) Locate dependencies: Bepinex.dll MMHook_Assembly-CSharp.dll and Assembly-CSharp.dll
- 2. Clone this repository 
+ 1. Clone or download this repository 
 	* [Open in Visual Studio](git-client://clone?repo=https://github.com/PassivePicasso/Rain-of-Stages)
 	* [Open in Desktop](github-windows://openRepo/https://github.com/PassivePicasso/Rain-of-Stages)
 	* [Download Zip](https://github.com/PassivePicasso/Rain-of-Stages/archive/master.zip)
-3. Open repository root directory with Unity 3D 2018.3.13f
-4. Add RoR2 Assembly-CSharp.dll into any directory under Assets\
-5. In Unity, locate Assembly-CSharp.dll in the project and select it.
-6. Using the Inspector un-check Validate Reference then click Apply ![Using the Inspector un-check Validate Reference then click Apply ](https://i.imgur.com/2JywInT.png)
-7.  Select Assets\RainOfStages.Shared\RainOfStages.Shared assembly definition
-    * In Inspector add an Assembly Reference and Select Assembly-CSharp.dll
-    * ![Select RainOfStages.Shared Assembly Definition](https://i.imgur.com/xeztYI1.png)
-    * ![Add Assembly-Csharp reference](https://i.imgur.com/ABVeKvS.png)
+ 	  * If you downloaded the Zip, extract the contents to folder on your computer, this is where you will work from.
+ 1. Launch Unity Hub
+ 1. Add a project using the Add button
+ 1. Locate your extracted or cloned Rain of Stages directory and open the folder to create your new project.
+     * The loading process will take some time so be patient.
+ 1. Once loaded Rain of Stages will prompt you to locate the your preferred "Risk of Rain 2.exe" 
+ 1. Rain of Stages will now retrieve a number of dependencies from Risk of Rain 2 as well as BepInEx from Thunderstore.io
+     * Another long loading process here, unity may appear to hang at points, don't close it.
+ 1. You are ready to start making content!
 
-8. Open RainOfStages\RainOfStages.sln in Visual Studio
 
-9. Fix references in project RainOfStages.Plugin by adding the following assembly references
-	* All DLL files in the Risk Of Rain Data Folder
-	* MMHook_Assembly-CSharp.dll
-		*  This is included with the R2API
-	* BepInEx.dll
-	* RainOfStages.Shared.dll 
-		*  If you launched unity and correctly setup the project then new folders will be generated under the repository root folder, navigate to Library\ScriptAssemblies to find RainOfStages.Shared.dll
+### Hello Maps!
+
+1. Do stuff, I'll write this later.
