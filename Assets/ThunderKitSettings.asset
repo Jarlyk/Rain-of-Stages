@@ -13,7 +13,16 @@ MonoBehaviour:
   m_Name: ThunderKitSettings
   m_EditorClassIdentifier: 
   GameExecutable: 
-  GamePath: 
+  GamePath:
+  assembly_metadata:
+  - AssemblyMetaData
+  additional_plugins: []
+  additional_assemblies: []
+  excluded_assemblies:
+  - pb_Stl
+  - Poly2Tri
+  - ProBuilderCore
+  - ProBuilderMeshOps
   deployment_exclusions:
   - rosshared
   - rosshared.manifest

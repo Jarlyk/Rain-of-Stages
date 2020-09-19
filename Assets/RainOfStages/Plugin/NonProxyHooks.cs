@@ -31,15 +31,16 @@ namespace PassivePicasso.RainOfStages.Hooks
                 Logger.LogDebug($"Found: {weeklyButton.name}");
 
                 var juicedPanel = weeklyButton.transform.parent;
-
-                foreach (var gameMode in GameModeNames.Except(new[] { "Classic", "ClassicRun", "Eclipse", "EclipseRun" }))
+                string[] skip = new[] { "Classic", "ClassicRun", "Eclipse", "EclipseRun" };
+                var gameModes = RainOfStages.Instance.GameModes.Where(gm => !skip.Contains(gm.name));
+                foreach (var gameMode in gameModes)
                 {
                     var copied = Transform.Instantiate(weeklyButton);
                     copied.name = $"GenericMenuButton ({gameMode})";
                     GameObject.DestroyImmediate(copied.GetComponent<DisableIfGameModded>());
 
                     var tmc = copied.GetComponent<LanguageTextMeshController>();
-                    tmc.token = gameMode;
+                    tmc.token = gameMode.nameToken;
 
                     var consoleFunctions = copied.GetComponent<ConsoleFunctions>();
 
@@ -55,7 +56,7 @@ namespace PassivePicasso.RainOfStages.Hooks
             }
             catch (Exception e)
             {
-                Logger.LogError("Error Adding GameModes to Alternate GameMOdes menu");
+                Logger.LogError("Error Adding GameModes to ExtraGameModeMenu menu");
                 Logger.LogError(e.Message);
                 Logger.LogError(e.StackTrace);
             }
@@ -89,19 +90,19 @@ namespace PassivePicasso.RainOfStages.Hooks
 
                 foreach (var mapGroup in mapGroups)
                 {
-                    var destinations = lookups[mapGroup.Key].destinations = mapGroup.Select(map => map.destination as SceneDef).ToArray();
+                    var destinations = lookups[mapGroup.Key].destinations = lookups[mapGroup.Key].destinations .Union(mapGroup.Select(map => map.destination as SceneDef)).Distinct().ToArray();
                     foreach (var destination in destinations)
                         Logger.LogMessage($"Added destination {destination.baseSceneName} to SceneDef {mapGroup.Key}");
                 }
             }
 
             {
-                var maps = sceneDefinitions.SelectMany(overridingScene => overridingScene.reverseSceneNameOverrides.Select(overridedScene => (overridingScene, overridedScene)));
+                var maps = sceneDefinitions.SelectMany(loadedSceneDef => loadedSceneDef.reverseSceneNameOverrides.Select(overridedScene => (loadedSceneDef, overridedScene)));
                 var mapGroups = maps.GroupBy(map => map.overridedScene.baseSceneName);
 
                 foreach (var mapGroup in mapGroups)
                 {
-                    var overridingScenes = lookups[mapGroup.Key].sceneNameOverrides = mapGroup.Select(map => map.overridingScene.baseSceneName).ToList();
+                    var overridingScenes = lookups[mapGroup.Key].sceneNameOverrides = lookups[mapGroup.Key].sceneNameOverrides.Union(mapGroup.Select(map => map.loadedSceneDef.baseSceneName)).Distinct().ToList();
 
                     foreach (var overridingScene in overridingScenes)
                         Logger.LogMessage($"Added override {overridingScene} to SceneDef {mapGroup.Key}");

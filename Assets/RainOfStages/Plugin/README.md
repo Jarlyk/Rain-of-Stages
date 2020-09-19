@@ -11,3 +11,13 @@ If you would like to get started making Stages visit the [Github Pages for Rain 
 Rain of Stages remains under development and contributions to the project are welcome
 
 The project aims to provide many features to streamline the addition of many types of custom content for Risk of Rain 2.
+
+
+Change Notes:
+
+2.1.3:
+	Fix Version numbers
+
+2.1.2:
+   Improved JumpPad Editor
+   Improved JumpPad Prefab
